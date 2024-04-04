@@ -1,0 +1,190 @@
+<?php
+// Establish database connection
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "your_database_name"; // Replace with your actual database name
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Initialize variables
+$name = $email = $from = $to = $date = $passengers = $message = "";
+$nameErr = $emailErr = $fromErr = $toErr = $dateErr = $passengersErr = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Validate name
+    if (empty($_POST["name"])) {
+        $nameErr = "Name is required";
+    } else {
+        $name = test_input($_POST["name"]);
+    }
+
+    // Validate email
+    if (empty($_POST["email"])) {
+        $emailErr = "Email is required";
+    } else {
+        $email = test_input($_POST["email"]);
+        // Check if email address is well-formed
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "Invalid email format";
+        }
+    }
+
+    // Validate from
+    if (empty($_POST["from"])) {
+        $fromErr = "From is required";
+    } else {
+        $from = test_input($_POST["from"]);
+    }
+
+    // Validate to
+    if (empty($_POST["to"])) {
+        $toErr = "To is required";
+    } else {
+        $to = test_input($_POST["to"]);
+    }
+
+    // Validate date
+    if (empty($_POST["date"])) {
+        $dateErr = "Date/Time is required";
+    } else {
+        $date = test_input($_POST["date"]);
+    }
+
+    // Validate passengers
+    if (empty($_POST["passengers"])) {
+        $passengersErr = "Number of Passengers is required";
+    } else {
+        $passengers = test_input($_POST["passengers"]);
+    }
+
+    // Insert data into database if all fields are validated
+    if (empty($nameErr) && empty($emailErr) && empty($fromErr) && empty($toErr) && empty($dateErr) && empty($passengersErr)) {
+        // Prepare and bind SQL statement
+        $stmt = $conn->prepare("INSERT INTO bookings (name, email, from_location, to_location, date_time, passengers, message) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("sssssis", $name, $email, $from, $to, $date, $passengers, $message);
+
+        // Set parameters and execute
+        $name = $_POST["name"];
+        $email = $_POST["email"];
+        $from = $_POST["from"];
+        $to = $_POST["to"];
+        $date = $_POST["date"];
+        $passengers = $_POST["passengers"];
+        $message = $_POST["message"];
+
+        if ($stmt->execute()) {
+            echo "<p>Booking successful. We'll get in touch with you shortly.</p>";
+        } else {
+            echo "Error: " . $stmt->error;
+        }
+
+        $stmt->close();
+    }
+}
+
+// Function to sanitize input data
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
+// Close database connection
+$conn->close();
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Now</title>
+    <style>
+        /* CSS Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="datetime-local"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book Now</h1>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" value="<?php echo $name; ?>">
+            <span class="error"><?php echo $nameErr; ?></span>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="<?php echo $email; ?>">
+            <span class="error"><?php echo $emailErr; ?></span>
+            <label for="from">From:</label>
+            <input type="text" id="from" name="from" value="<?php echo $from; ?>">
+            <span class="error"><?php echo $fromErr; ?></span>
+            <label for="to">To:</label>
+            <input type="text" id="to" name="to" value="<?php echo $to; ?>">
+            <span class="error"><?php echo $toErr; ?></span>
+            <label for="date">Date/Time:</label>
+            <input type="datetime-local" id="date" name="date" value="<?php echo $date; ?>">
+            <span class="error"><?php echo $dateErr; ?></span>
+            <label for="passengers">Number of Passengers:</label>
+            <input type="number" id="passengers" name="passengers" min="1" value="<?php echo $passengers; ?>">
+            <span class="error"><?php echo $passengersErr; ?></span>
+            <label for="message">Additional Notes:</label>
+            <textarea id="message" name="message" rows="4"><?php echo $message; ?></textarea>
+            <input type="submit" value="Book Now">
+        </form>
+        <p>Contact us at <a href="tel:+1234567890">123-456-7890</a> or <a href="mailto:info@example.com">info@example.com</a> for assistance.</p>
+    </div>
+</body>
+</html>

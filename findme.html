@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet Sample</title>
+    <!-- Link to Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <!-- Link to Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <style>
+        #map { height: 580px; }
+    </style>
+</head>
+<body>
+    <!-- Container for the map -->
+    <div id="map"></div>
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([35.6804, 139.7690], 5); // Centered around Japan
+
+        // Add the base OpenStreetMap layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: 'Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Array of places with their coordinates and names
+        var places = [
+            { name: 'Far East Village Hotel-Ariake, Tokyo', location: [35.6241, 139.7800] },
+            { name: 'Grand Nikko Tokyo - Maihama, Urayasu', location: [35.6329, 139.8847] },
+            { name: 'Hotel Granvia-Shiokojisagaru, Kyoto', location: [34.9858, 135.7580] },
+            { name: 'Swissotel Nankai- Namba, Osaka', location: [34.6628, 135.5018] },
+            { name: 'APA Hotel- Kabukicho, Shinjuku', location: [35.6953, 139.7028] },
+            { name: 'Solaria Nishitetsu Hotel- Tenjin, Fukuoka', location: [33.5889, 130.4093] }
+        ];
+
+        // Add markers for each place
+        places.forEach(function(place) {
+            L.marker(place.location).addTo(map).bindPopup(place.name);
+        });
+    </script>
+</body>
+</html>

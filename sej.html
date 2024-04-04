@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Login</title>
+    <link rel="stylesheet" href="unite.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <form id="registrationForm">
+            <h1>Login</h1>
+            <div class="input-box">
+                <div class="input-field">
+                    <input id="fullName" type="text" placeholder="Full name" required>
+                    <div class="error" id="fullNameError"></div>
+                </div>
+                <div class="input-field">
+                    <input id="username" type="text" placeholder="Username" required>
+                    <div class="error" id="usernameError"></div>
+                </div>
+            </div>
+
+            <div class="input-box">
+                <div class="input-field">
+                    <input id="email" type="email" placeholder="Email" required>
+                    <div class="error" id="emailError"></div>
+                </div>
+                <div class="input-field">
+                    <input id="phone" type="text" placeholder="Phone number" required>
+                    <div class="error" id="phoneError"></div>
+                </div>
+            </div>
+
+            <div class="input-box">
+                <div class="input-field">
+                    <input id="password" type="password" placeholder="Password" required>
+                    <div class="error" id="passwordError"></div>
+                </div>
+                <div class="input-field">
+                    <input id="confirmPassword" type="password" placeholder="Confirm password" required>
+                    <div class="error" id="confirmPasswordError"></div>
+                </div>
+            </div>
+
+            <label><input type="checkbox">I hereby declare that the above information provided is true and correct</label>
+            <button type="submit" class="btn">Register</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            validateForm();
+        });
+
+        function validateForm() {
+            var fullName = document.getElementById("fullName").value.trim();
+            var username = document.getElementById("username").value.trim();
+            var email = document.getElementById("email").value.trim();
+            var phone = document.getElementById("phone").value.trim();
+            var password = document.getElementById("password").value.trim();
+            var confirmPassword = document.getElementById("confirmPassword").value.trim();
+
+            var fullNameError = document.getElementById("fullNameError");
+            var usernameError = document.getElementById("usernameError");
+            var emailError = document.getElementById("emailError");
+            var phoneError = document.getElementById("phoneError");
+            var passwordError = document.getElementById("passwordError");
+            var confirmPasswordError = document.getElementById("confirmPasswordError");
+
+            var isValid = true;
+
+            // Validate full name
+            if (fullName === "") {
+                fullNameError.innerText = "Full name cannot be empty";
+                isValid = false;
+            } else {
+                fullNameError.innerText = "";
+            }
+
+            // Validate username
+            if (username === "") {
+                usernameError.innerText = "Username cannot be empty";
+                isValid = false;
+            } else {
+                usernameError.innerText = "";
+            }
+
+            // Validate email
+            if (email === "") {
+                emailError.innerText = "Email cannot be empty";
+                isValid = false;
+            } else {
+                emailError.innerText = "";
+            }
+
+            // Validate phone number
+            if (phone === "") {
+                phoneError.innerText = "Phone number cannot be empty";
+                isValid = false;
+            } else {
+                phoneError.innerText = "";
+            }
+
+            // Validate password
+            if (password === "") {
+                passwordError.innerText = "Password cannot be empty";
+                isValid = false;
+            } else {
+                passwordError.innerText = "";
+            }
+
+            // Validate confirm password
+            if (confirmPassword === "") {
+                confirmPasswordError.innerText = "Please confirm your password";
+                isValid = false;
+            } else if (confirmPassword !== password) {
+                confirmPasswordError.innerText = "Passwords do not match";
+                isValid = false;
+            } else {
+                confirmPasswordError.innerText = "";
+            }
+
+            if (isValid) {
+                // If form is valid, you can submit the form or perform further actions
+                alert("Form submitted successfully!");
+                // document.getElementById("registrationForm").submit(); // Uncomment this line to submit the form
+            }
+        }
+    </script>
+</body>
+</html>

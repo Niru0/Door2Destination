@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Leaflet Map with Features</title>
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+</head>
+
+<body>
+    <div id="map" style="width: 900px; height: 580px"></div>
+
+    <script>
+        // Creating map options
+        var mapOptions = {
+            center: [18.9902, 73.1277],
+            zoom: 10
+        }
+
+        // Creating a map object
+        var map = new L.map('map', mapOptions);
+
+        // Creating a Layer object
+        var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+
+        // Adding layer to the map
+        map.addLayer(layer);
+
+        // Creating markers for two locations
+        var location1 = L.marker([18.9902, 73.1277]).addTo(map);
+        var location2 = L.marker([19.0760, 72.8777]).addTo(map);
+
+        // Adding a popup to each marker
+        location1.bindPopup('Panvel').openPopup();
+        location2.bindPopup('Mumbai').openPopup();
+
+        // Calculating distance between two locations (in meters)
+        var distance = map.distance(location1.getLatLng(), location2.getLatLng());
+        console.log("Distance between Pune and Mumbai: " + distance + " meters");
+
+        // Creating a polygon to represent a particular area
+        var polygonPoints = [
+            [18.9902, 73.1277],
+            [18.9861, 73.1097],
+            [18.9647, 73.1240]
+        ];
+        var polygon = L.polygon(polygonPoints, { color: 'red' }).addTo(map);
+        polygon.bindPopup('Custom Area');
+
+    </script>
+</body>
+
+</html>

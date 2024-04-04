@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 500px;
+    margin: 50px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input,
+select,
+textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Feedback Form</h2>
+        <form id="feedbackForm">
+            <input type="text" id="name" placeholder="Your Name">
+            <input type="email" id="email" placeholder="Your Email">
+            <select id="rating">
+                <option value="" disabled selected>Select Rating</option>
+                <option value="1">1 Star</option>
+                <option value="2">2 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="5">5 Stars</option>
+            </select>
+            <textarea id="feedback" placeholder="Your Feedback"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    if (!validateName()) {
+        showError('name', 'Please enter your name.');
+        return;
+    } else {
+        hideError('name');
+    }
+
+    if (!validateEmail()) {
+        showError('email', 'Please enter a valid email address.');
+        return;
+    } else {
+        hideError('email');
+    }
+
+    if (!validateRating()) {
+        showError('rating', 'Please select a rating.');
+        return;
+    } else {
+        hideError('rating');
+    }
+
+    if (!validateFeedback()) {
+        showError('feedback', 'Please provide your feedback.');
+        return;
+    } else {
+        hideError('feedback');
+    }
+
+    // If all validations pass, submit the form
+    submitForm();
+});
+
+function validateName() {
+    const name = document.getElementById('name').value.trim();
+    return name !== '';
+}
+
+function validateEmail() {
+    const email = document.getElementById('email').value.trim();
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+}
+
+function validateRating() {
+    const rating = document.getElementById('rating').value;
+    return rating !== '';
+}
+
+function validateFeedback() {
+    const feedback = document.getElementById('feedback').value.trim();
+    return feedback !== '';
+}
+
+function submitForm() {
+    // Simulate form submission
+    alert('Form submitted successfully!');
+}
+
+function showError(fieldId, errorMessage) {
+    const field = document.getElementById(fieldId);
+    const errorSpan = document.createElement('span');
+    errorSpan.className = 'error';
+    errorSpan.textContent = errorMessage;
+    field.insertAdjacentElement('afterend', errorSpan);
+}
+
+function hideError(fieldId) {
+    const errorSpan = document.querySelector(`#${fieldId} + .error`);
+    if (errorSpan) {
+        errorSpan.remove();
+    }
+}
+
+    </script>
+</body>
+</html>

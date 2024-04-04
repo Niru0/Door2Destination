@@ -1,0 +1,343 @@
+body {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    background-color: aliceblue;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-color: azure;
+    position: relative;
+}
+footer{
+    text-align: center;
+}
+body::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    background: pink;
+    clip-path: inset(47% 0 0 0);
+    z-index: -1;
+    height: 100%;
+}
+
+::selection {
+    background: pink;
+    color: antiquewhite;
+}
+
+/*.container {
+    max-width: 950px;
+    width: 90%;
+    overflow: hidden;
+    padding: 80px 0;
+    margin: 0 auto;
+}
+
+.container .main-card {
+    display: flex;
+    justify-content: space-evenly;
+    width: 200%;
+    transition: 1s;
+}
+
+#two:checked ~ .main-card {
+    margin-left: -100%;
+}
+*?
+
+/*.container .main-card .cards {
+    width: calc(100% / 3 - 10px);
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 20px;
+    justify-content: space-between;
+}
+
+.main-card .cards .card:hover {
+    transition: translateY(-15px);
+}
+
+.main-card .cards .card {
+    width: calc(100% / 3 - 10px);
+}
+*/
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+header,
+footer {
+    position: relative; 
+    background-color: antiquewhite;
+    width: 100%;
+    color: black;
+}
+
+header {
+    height: auto;
+}
+
+/*nav {
+    padding: 10px 20px; 
+}
+
+footer {
+    height: auto; 
+    bottom: 0;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.menu {
+    display: flex;
+    list-style: none;
+}
+
+.menu li {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.search {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.menu li a {
+    font-size: 19px;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.menu li a:hover {
+    color: blueviolet;
+}
+*/
+
+/*.slideshow-container {
+    margin: 0 auto;
+    max-width: 800px;
+    text-align: center;
+}
+*/
+#on {
+    text-align: center;
+}
+
+/*#desrec,
+#pk {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.card,
+.video,
+.pack {
+    margin-bottom: 20px;
+}
+*/
+/* CSS for Navigation Bar */
+
+nav {
+    background-color: antiquewhite;
+    width: 100%;
+    color: black;
+    display: flex;
+    justify-content: space-between; /* Align items horizontally */
+    align-items: center; /* Align items vertically */
+    padding: 10px 20px;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.menu li {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.search {
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.menu li a {
+    font-size: 19px;
+    text-decoration: none;
+    transition: 0.3s ease;
+    color: black; /* Set the default color */
+}
+
+.menu li a:hover {
+    color: blueviolet;
+}
+/* Updated CSS for Sustainable Tourism Goals Slideshow */
+
+.mySlides {
+    display: none; /* Hide all slides by default */
+    opacity: 0;
+}
+
+.mySlides:first-child {
+    display: block; /* Show the first slide */
+    opacity: 1;
+}
+
+@keyframes fadeAnimation {
+    0%, 25% {
+        opacity: 0; /* Only one quote is visible at a time */
+    }
+    30%, 100% {
+        opacity: 1;
+    }
+}
+
+/* Updated CSS for Recommended Destinations */
+#desrec {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+
+.card {
+    display: inline-block; /* Display cards inline */
+    vertical-align: top; /* Align cards to the top */
+    margin: 10px; /* Adjust margin between cards */
+    width: calc(20% - 20px); /* Set width to occupy one-fifth of the container width */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+    text-align: left; /* Align text to the left within the cards */
+}
+
+.card .content {
+    border: 1px solid #ccc; /* Add border around content */
+    border-radius: 5px; /* Add border radius to content */
+    overflow: hidden; /* Hide overflow */
+}
+
+.card .img img {
+    display: block; /* Ensure image is block-level */
+    width: 100%; /* Fill parent width */
+    height: auto; /* Maintain aspect ratio */
+    border-bottom: 1px solid #ccc; /* Add bottom border to image */
+}
+*/
+/* CSS for Recommended Destinations */
+
+#desrec {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.card {
+    display: inline-block; /* Display cards inline */
+    vertical-align: top; /* Align cards to the top */
+    margin: 10px; /* Adjust margin between cards */
+    width: calc(20% - 20px); /* Set width to occupy one-fifth of the container width */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+    text-align: left; /* Align text to the left within the cards */
+}
+
+.card .content {
+    border: 1px solid #ccc; /* Add border around content */
+    border-radius: 5px; /* Add border radius to content */
+    overflow: hidden; /* Hide overflow */
+}
+
+.card .img img {
+    display: block; /* Ensure image is block-level */
+    width: 100%; /* Fill parent width */
+    height: auto; /* Maintain aspect ratio */
+    border-bottom: 1px solid #ccc; /* Add bottom border to image */
+}
+/* CSS for Sustainable Packing Guide */
+
+#pk {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.pack {
+    display: inline-block; /* Display packing items inline */
+    vertical-align: top; /* Align packing items to the top */
+    margin: 10px; /* Adjust margin between packing items */
+    width: calc(20% - 20px); /* Set width to occupy one-fifth of the container width */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+    text-align: left; /* Align text to the left within the packing items */
+}
+
+.pack img {
+    display: block; /* Ensure image is block-level */
+    width: 100%; /* Fill parent width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+@media only screen and (max-width: 768px) {
+    /* Adjustments for smaller screens */
+    header {
+        padding: 10px;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .menu {
+        display: none;
+        text-align: center;
+        padding: 10px;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background-color: antiquewhite;
+        z-index: 999;
+    }
+
+    .menu li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .menu-icon {
+        display: block;
+        float: right;
+        cursor: pointer;
+    }
+
+    .search {
+        margin: 10px;
+    }
+
+    .slideshow-container {
+        max-width: 100%;
+        margin-top: 10px;
+    }
+
+    #desrec .card {
+        width: calc(50% - 20px);
+    }
+
+    #pk .pack {
+        width: calc(50% - 20px);
+    }
+}

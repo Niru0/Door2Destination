@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XAMPP Database Contents</title>
+    <style>
+        /* CSS styles */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<?php
+// Include the database configuration file
+require_once 'connect.php';
+
+// Get data from the database
+$result = $conn->query("SELECT * FROM v1 ORDER BY `S.no` DESC");
+
+?>
+
+<?php if ($result && $result->num_rows > 0) { ?>
+    <h2>XAMPP Database Contents</h2>
+    <table>
+        <tr>
+            <!-- Adjust column headers based on your table structure -->
+            <th>S.No</th>
+            <th>Country</th>
+            <th>Location</th>
+            <th>Name</th>
+            <th>Contact</th>
+        </tr>
+        <?php while ($row = $result->fetch_assoc()) { ?>
+            <tr>
+                <!-- Adjust column names based on your table structure -->
+                <td><?php echo $row["S.no"]; ?></td>
+                <td><?php echo $row["Country"]; ?></td>
+                <td><?php echo $row["Location"]; ?></td>
+                <td><?php echo $row["Name"]; ?></td>
+                <td><?php echo $row["Contact"]; ?></td>
+            </tr>
+        <?php } ?>
+    </table>
+<?php } else { ?>
+    <p>No data found in the database.</p>
+<?php } ?>
+
+<?php $conn->close(); // Close database connection ?>
+
+</body>  
+</html>

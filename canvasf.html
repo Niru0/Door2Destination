@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canvas Text: Door 2 Destination</title>
+<style>
+    canvas {
+        border: 1px solid #000;
+    }
+</style>
+</head>
+<body>
+<canvas id="textCanvas" width="400" height="200"></canvas>
+
+<script>
+    // Get the canvas element
+    var canvas = document.getElementById('textCanvas');
+    var ctx = canvas.getContext('2d');
+
+    // Set font properties
+    ctx.font = '30px Arial';
+    ctx.fillStyle = 'black';
+    ctx.textAlign = 'center';
+
+    // Draw text on canvas
+    ctx.fillText('Door 2 Destination', canvas.width / 2, canvas.height / 2);
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <form action="contactus.php" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+
+        <h3>Contact</h3>
+        <p><label for="name">Name</label></p>
+        <input type="text" id="sname" name="name">
+        <span id="nameError" class="error"><?php echo $nameErr;?></span>
+
+        <p><label for="contact">Contact Number</label></p>
+        <input type="text" id="scontact" name="contact">
+        <span id="contactError" class="error"><?php echo $contactErr;?></span>
+
+        <p><label for="email">Email ID</label></p>
+        <input type="email" id="semail" name="email">
+        <span id="emailError" class="error"><?php echo $emailErr;?></span>
+
+        <p><label for="reason">Reason</label></p>
+        <select id="reason" name="reason">
+            <option value="avlblty">Room Availability</option>
+            <option value="slct" selected>Select</option>
+            <option value="rf">Room Facilities</option>
+            <option value="rc">Room Charges</option>
+            <option value="bkng">Book Room</option>
+         </select>
+         <span id="reasonError" class="error"><?php echo $reasonErr;?></span>
+         
+         <pre><br></pre>
+         <input type="submit" value="Submit" name="save">
+    </form> 
+</body>
+</html>
